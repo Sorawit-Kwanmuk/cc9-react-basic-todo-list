@@ -1,8 +1,10 @@
-function AddTodoForm() {
+function AddTodoForm({ closeAddForm }) {
   return (
     <div className='border shadow p-3 mb-4'>
       <div className='d-flex justify-content-end'>
-        <button className='btn-close btn-sm text-black-50'></button>
+        <button
+          className='btn-close btn-sm text-black-50'
+          onClick={closeAddForm}></button>
       </div>
       <form>
         <div className='mt-3 mb-4'>
