@@ -1,18 +1,37 @@
+import { useState } from 'react';
 import EditTodoForm from './EditTodoForm';
 import ListDetail from './ListDetail';
+import WrapList from './WrapList';
 
-function List({ list }) {
+function List({ list, deleteList, updateList }) {
+  const [isEditing, setIsEditing] = useState(false);
   const { status } = list;
+
+  const openEditing = () => {
+    setIsEditing(true);
+  };
+
+  const closeEditing = () => {
+    setIsEditing(false);
+  };
+
   return (
-    <div
-      className={`card shadow rounded-0 bd-callout bd-callout-${
-        status ? 'success' : 'warning'
-      }`}>
-      <div className='card-body d-flex justify-content-between align-items-center'>
-        <ListDetail list={list} />
-        {/* <EditTodoForm /> */}
-      </div>
-    </div>
+    <WrapList classes={status ? 'success' : 'warning'}>
+      {isEditing ? (
+        <EditTodoForm
+          list={list}
+          closeEditing={closeEditing}
+          updateList={updateList}
+        />
+      ) : (
+        <ListDetail
+          list={list}
+          deleteList={deleteList}
+          updateList={updateList}
+          openEditing={openEditing}
+        />
+      )}
+    </WrapList>
   );
 }
 
