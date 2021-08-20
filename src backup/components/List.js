@@ -3,7 +3,7 @@ import EditTodoForm from './EditTodoForm';
 import ListDetail from './ListDetail';
 import WrapList from './WrapList';
 
-function List({ list }) {
+function List({ list, deleteList, updateList }) {
   const [isEditing, setIsEditing] = useState(false);
   const { status } = list;
 
@@ -18,9 +18,18 @@ function List({ list }) {
   return (
     <WrapList classes={status ? 'success' : 'warning'}>
       {isEditing ? (
-        <EditTodoForm list={list} closeEditing={closeEditing} />
+        <EditTodoForm
+          list={list}
+          closeEditing={closeEditing}
+          updateList={updateList}
+        />
       ) : (
-        <ListDetail list={list} openEditing={openEditing} />
+        <ListDetail
+          list={list}
+          deleteList={deleteList}
+          updateList={updateList}
+          openEditing={openEditing}
+        />
       )}
     </WrapList>
   );

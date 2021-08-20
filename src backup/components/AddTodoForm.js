@@ -1,9 +1,6 @@
-import { useContext, useState } from 'react';
-import { ListContext } from '../Contexts/ListContext';
+import { useState } from 'react';
 
-function AddTodoForm({ closeAddForm }) {
-  const contextBundle = useContext(ListContext);
-  const { addList } = contextBundle;
+function AddTodoForm({ closeAddForm, isShowAddForm, addList }) {
   const [name, setName] = useState('');
 
   const [error, setError] = useState('');

@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { ListContext } from '../Contexts/ListContext';
-
-function ListDetail({ list: { id, name, status }, openEditing }) {
-  const contextBundle = useContext(ListContext);
-  const { updateList, deleteList } = contextBundle;
+function ListDetail({
+  list: { id, name, status },
+  deleteList,
+  updateList,
+  openEditing,
+}) {
   return (
     <>
       <span style={{ cursor: 'pointer' }} onClick={openEditing}>
@@ -12,7 +12,9 @@ function ListDetail({ list: { id, name, status }, openEditing }) {
       <div className='btn-group'>
         <button
           className='btn btn-outline-info'
-          onClick={() => updateList(id, { id: id, name: name, status: !status })}>
+          onClick={() =>
+            updateList(id, { id: id, name: name, status: !status })
+          }>
           <i className={`bi-toggle2-${status ? 'on' : 'off'}`} />
         </button>
         <button className='btn btn-danger' onClick={() => deleteList(id)}>

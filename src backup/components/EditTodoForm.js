@@ -1,9 +1,10 @@
-import { useContext, useState } from 'react';
-import { ListContext } from '../Contexts/ListContext';
+import { useState } from 'react';
 
-function EditTodoForm({ list: { name: oldName, id, status }, closeEditing }) {
-  const contextBundle = useContext(ListContext);
-  const { updateList } = contextBundle;
+function EditTodoForm({
+  list: { name: oldName, id, status },
+  closeEditing,
+  updateList,
+}) {
   const [name, setName] = useState(oldName);
   const [error, setError] = useState('');
 
