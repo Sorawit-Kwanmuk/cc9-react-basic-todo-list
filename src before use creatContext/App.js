@@ -6,7 +6,6 @@ import ListContainer from './components/ListContainer';
 import RemainingMessage from './components/RemainingMessage';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { ListContext } from './Contexts/ListContext';
 
 function App() {
   const [lists, setLists] = useState([]); //{id: name: status:}
@@ -104,11 +103,9 @@ function App() {
   const remaining = lists.filter(item => !item.status).length; //ได้array ที่มี status เป็น false(! คือถ้าค่า status เป็น true จะแปลงเป็น false)
   return (
     <Container>
-      <ListContext.Provider value={{ lists: lists }}>
-        <AddTodoContainer addList={addList} />
-        <RemainingMessage remaining={remaining} />
-        <ListContainer lists={lists} deleteList={deleteList} updateList={updateList} />
-      </ListContext.Provider>
+      <AddTodoContainer addList={addList} />
+      <RemainingMessage remaining={remaining} />
+      <ListContainer lists={lists} deleteList={deleteList} updateList={updateList} />
     </Container>
   );
 }

@@ -1,15 +1,14 @@
+import { useContext } from 'react';
+import { ListContext } from '../Contexts/ListContext';
 import List from './List';
 
-function ListContainer({ lists, deleteList, updateList }) {
+function ListContainer({ deleteList, updateList }) {
+  const contextBundle = useContext(ListContext);
+  const { lists } = contextBundle;
   return (
     <>
       {lists.map(item => (
-        <List
-          key={item.id}
-          list={item}
-          deleteList={deleteList}
-          updateList={updateList}
-        />
+        <List key={item.id} list={item} deleteList={deleteList} updateList={updateList} />
         // <lists key={item.id} list={item.id} {...item} />
       ))}
     </>
